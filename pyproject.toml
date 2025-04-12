@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "berries-backend"
+version = "0.1.0"
+description = "Backend for the Berries Financial Assistant"
+authors = ["Your Name <amir224030@bue.edu.eg>"]
+readme = "README.md"
+packages = [{ include = "berries_backend", from = "src" }]
+# Optional: add license, repository, etc.
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0.0"
+python-dotenv = "^1.1.0"
+alpaca-py = "^0.39.2"
+yfinance = "^0.2.55"
+
+[tool.poetry.scripts]
+app = "berries_backend.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
