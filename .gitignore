@@ -35,10 +35,12 @@ venv.bak/
 *.swp
 *.swo
 .DS_Store
+.cursor/
 
 # Project specific
 vector_dbs/
 conversation_history/
+sec_filings
 *.json
 !pyproject.json
 

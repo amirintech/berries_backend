@@ -5,13 +5,23 @@ description = "Backend for the Berries Financial Assistant"
 authors = ["Your Name <amir224030@bue.edu.eg>"]
 readme = "README.md"
 packages = [{ include = "berries_backend", from = "src" }]
-# Optional: add license, repository, etc.
 
 [tool.poetry.dependencies]
 python = ">=3.12,<4.0.0"
 python-dotenv = "^1.1.0"
 alpaca-py = "^0.39.2"
 yfinance = "^0.2.55"
+langchain = "^0.3.23"
+langchain-community = "^0.3.21"
+langchain-huggingface = "^0.1.2"
+pdfminer-six = "^20250327"
+chromadb = "^1.0.4"
+unstructured = {extras = ["pytesseract"], version = "^0.17.2"}
+pi-heif = "^0.22.0"
+unstructured-inference = "^0.8.10"
+pdf2image = "^1.17.0"
+pytesseract = "^0.3.13"
+pdfplumber = "^0.11.6"
 
 [tool.poetry.scripts]
 app = "berries_backend.main:main"
