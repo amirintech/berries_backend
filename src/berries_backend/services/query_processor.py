@@ -1,6 +1,5 @@
 """Query processing for the financial assistant."""
 
-from __future__ import annotations
 import json
 from typing import Dict, List
 from langchain_google_genai import ChatGoogleGenerativeAI

@@ -5,7 +5,7 @@ from typing import Optional, List
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders.pdf import PDFPlumberLoader
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from berries_backend.config import VECTOR_DB_DIR, PROJECT_ROOT
 
 
@@ -20,19 +20,22 @@ class SECEmbeddingsManager:
             encode_kwargs={'normalize_embeddings': True}
         )
         self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=512,
-            chunk_overlap=100,
+            chunk_size=250,
+            chunk_overlap=50,
             length_function=len,
             separators=["\n\n", "\n", ".", " ", ""]
         )
+        
         
     def _get_vector_db_path(self, ticker: str, year: str) -> str:
         """Get the path for storing vector DB for a specific ticker and year."""
         return os.path.join(VECTOR_DB_DIR, f"{ticker.lower()}_{year}")
         
+        
     def _get_filing_path(self, ticker: str, year: str) -> Optional[str]:
         """Get the path to the SEC filing file."""
         return os.path.join(PROJECT_ROOT, "sec_filings", "10K", ticker.upper(), f"{year}.pdf")        
+        
         
     def get_or_create_embeddings(self, ticker: str, year: str) -> Optional[Chroma]:
         """
@@ -78,13 +81,13 @@ class SECEmbeddingsManager:
                 embedding=self.embeddings,
                 persist_directory=vector_db_path
             )
-            vectordb.persist()
             print(f"Successfully created vector DB for {ticker} {year}")
             
             return vectordb
             
         except Exception as e:
             raise Exception(f"Error processing SEC filing for {ticker} {year}: {str(e)}")
+            
             
     def query_filing(self, 
                     ticker: str, 
@@ -120,6 +123,7 @@ class SECEmbeddingsManager:
             
         except Exception as e:
             raise Exception(f"Error querying SEC filing for {ticker} {year}: {str(e)}")
+            
             
     def delete_embeddings(self, ticker: str, year: str) -> bool:
         """
