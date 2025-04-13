@@ -6,7 +6,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders.pdf import PDFPlumberLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from berries_backend.config import VECTOR_DB_DIR, PROJECT_ROOT
+from rag_pipeline.config import VECTOR_DB_DIR, PROJECT_ROOT
 
 
 class SECEmbeddingsManager:

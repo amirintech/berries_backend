@@ -2,14 +2,14 @@
 
 import traceback  # For better error printing
 
-from berries_backend.services import (
+from rag_pipeline.services import (
     AlpacaClient, MarketDataClient, SECEmbeddingsManager,
     QueryProcessor, QueryParsingError,
     DataRetriever, DataRetrievalError,
     ResponseGenerator
 )
-from berries_backend.utils.memory import ConversationMemory
-from berries_backend.config import (
+from rag_pipeline.utils.memory import ConversationMemory
+from rag_pipeline.config import (
     get_api_keys, PAPER_TRADING, DEFAULT_MEMORY_FILE,
     MAX_CONVERSATION_HISTORY
 )
